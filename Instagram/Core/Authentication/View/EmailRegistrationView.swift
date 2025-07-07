@@ -32,16 +32,18 @@ struct EmailRegistrationView: View {
                         .padding(.vertical)
                     
                     VStack(spacing: 12) {
-                        Button("Next") {
-                            
+                        NavigationLink {
+                            EmailRegistrationPasswordView(email: $email)
+                        } label: {
+                            Text("Next")
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color.white)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background(Color(.systemBlue))
+                                .clipShape(Capsule())
                         }
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundStyle(Color.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(Color(.systemBlue))
-                        .clipShape(Capsule())
                         
                         Button {
                             dismiss()

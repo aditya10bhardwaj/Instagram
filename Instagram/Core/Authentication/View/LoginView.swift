@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @Environment(AuthManager.self) var authManager
     @Environment(\.colorScheme) var colorScheme
     @State private var email: String = ""
     @State private var password: String = ""
@@ -56,7 +57,7 @@ struct LoginView: View {
                     }
                     
                     Button("Log in") {
-                        
+                        signIn()
                     }
                     .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(.white)
@@ -105,7 +106,25 @@ struct LoginView: View {
     }
 }
 
+private extension LoginView {
+    func signIn() {
+        Task { await authManager.signIn(email: email, password: password) }
+    }
+    
+    var isFormValid: Bool {
+        return email.isValidEmail() && !password.isEmpty
+    }
+}
+
+extension String {
+    func isValidEmail() -> Bool {
+        let regex = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/."
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: self)
+    }
+}
+
 #Preview {
     LoginView()
+        .environment(AuthManager())
 //        .preferredColorScheme(.dark)
 }

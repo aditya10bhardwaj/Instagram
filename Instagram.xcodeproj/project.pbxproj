@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		076FB2562E1B09F100B9B231 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB2552E1B09F100B9B231 /* Auth */; };
+		076FB2582E1B09F100B9B231 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB2572E1B09F100B9B231 /* Functions */; };
+		076FB25A2E1B09F100B9B231 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB2592E1B09F100B9B231 /* PostgREST */; };
+		076FB25C2E1B09F100B9B231 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB25B2E1B09F100B9B231 /* Realtime */; };
+		076FB25E2E1B09F100B9B231 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB25D2E1B09F100B9B231 /* Storage */; };
+		076FB2602E1B09F100B9B231 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 076FB25F2E1B09F100B9B231 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		07B1670D2E1930FF00B1C5E2 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +32,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076FB25A2E1B09F100B9B231 /* PostgREST in Frameworks */,
+				076FB2582E1B09F100B9B231 /* Functions in Frameworks */,
+				076FB2602E1B09F100B9B231 /* Supabase in Frameworks */,
+				076FB2562E1B09F100B9B231 /* Auth in Frameworks */,
+				076FB25E2E1B09F100B9B231 /* Storage in Frameworks */,
+				076FB25C2E1B09F100B9B231 /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +80,12 @@
 			);
 			name = Instagram;
 			packageProductDependencies = (
+				076FB2552E1B09F100B9B231 /* Auth */,
+				076FB2572E1B09F100B9B231 /* Functions */,
+				076FB2592E1B09F100B9B231 /* PostgREST */,
+				076FB25B2E1B09F100B9B231 /* Realtime */,
+				076FB25D2E1B09F100B9B231 /* Storage */,
+				076FB25F2E1B09F100B9B231 /* Supabase */,
 			);
 			productName = Instagram;
 			productReference = 07B1670D2E1930FF00B1C5E2 /* Instagram.app */;
@@ -94,6 +115,9 @@
 			);
 			mainGroup = 07B167042E1930FF00B1C5E2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 07B1670E2E1930FF00B1C5E2 /* Products */;
 			projectDirPath = "";
@@ -324,6 +348,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		076FB2552E1B09F100B9B231 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		076FB2572E1B09F100B9B231 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		076FB2592E1B09F100B9B231 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		076FB25B2E1B09F100B9B231 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		076FB25D2E1B09F100B9B231 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		076FB25F2E1B09F100B9B231 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 076FB2542E1B09F100B9B231 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07B167052E1930FF00B1C5E2 /* Project object */;
 }
