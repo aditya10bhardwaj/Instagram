@@ -12,8 +12,7 @@ import Observation
 @MainActor
 class AuthManager {
     private let authService: SupabaseService
-    
-    var currentUser: User?
+    var currentUser: User? = nil
     
     init(authService: SupabaseService = SupabaseService()) {
         self.authService = authService
@@ -23,7 +22,7 @@ class AuthManager {
         do {
             self.currentUser = try await authService.signUp(email: email, password: password)
         } catch {
-            print("DEBUD: Sign in error: \(error.localizedDescription)")
+            print("DEBUG: Sign up error: \(error.localizedDescription)")
         }
     }
     
@@ -31,7 +30,7 @@ class AuthManager {
         do {
             self.currentUser = try await authService.signIn(email: email, password: password)
         } catch {
-            print("DEBUD: Sign in error: \(error.localizedDescription)")
+            print("DEBUG: Sign in error: \(error.localizedDescription)")
         }
     }
     
@@ -40,7 +39,7 @@ class AuthManager {
             try await authService.signOut()
             currentUser = nil
         } catch {
-            print("DEBUD: Sign in error: \(error.localizedDescription)")
+            print("DEBUG: Sign out error: \(error.localizedDescription)")
         }
     }
     

@@ -24,7 +24,7 @@ struct UserPostAndStoryView: View {
                 if selectedControl == 0 {
                     LazyVGrid(columns: [.init(), .init(), .init()], spacing: 1) {
                         ForEach(0 ... 10, id: \.self) { _ in
-                            Image(systemName: "")
+                            Image(systemName: "person.circle.fill")
                                 .resizable()
                                 .frame(width: UIScreen.main.bounds.width / 3 - 11, height: UIScreen.main.bounds.width / 3 - 11)
                                 .background(

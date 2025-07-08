@@ -10,23 +10,38 @@ import SwiftUI
 struct AccountView: View {
     
     @Environment(AuthManager.self) var authManager
+    @Environment(PersonManager.self) var personManager
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    UserDetailsView()
+                    if let person = personManager.currentPerson {
+                        UserDetailsView(person: person)
+                    } else {
+                        UserDetailsView(person: Person.MOCK_DATA.first!)
+                    }
+                    
                     
                     UserPostAndStoryView()
                 }
+            }
+            .onAppear {
+                Task { await personManager.fetchCurrentPerson() }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     HStack(spacing: 12) {
                         Image(systemName: "lock")
-                        Text("aditya_bhardwaj._58")
-                            .font(.title3)
-                            .fontWeight(.semibold)
+                        if let person = personManager.currentPerson {
+                            Text(person.username)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                        } else {
+                            Text("aditya_bhardwaj._58")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                        }
                     }
                 }
                 
@@ -55,6 +70,7 @@ struct AccountView: View {
 private extension AccountView {
     func signOut() {
         Task { await authManager.signOut() }
+        personManager.currentPerson = nil
     }
 }
 

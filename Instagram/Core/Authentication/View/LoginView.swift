@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @Environment(AuthManager.self) var authManager
+    @Environment(PersonManager.self) var personManager
     @Environment(\.colorScheme) var colorScheme
     @State private var email: String = ""
     @State private var password: String = ""
@@ -39,6 +40,7 @@ struct LoginView: View {
                                             .stroke(Color.gray, lineWidth: 1)
                                     )
                                     .padding(.horizontal)
+                                    .textInputAutocapitalization(TextInputAutocapitalization(.none))
                             } else {
                                 TextFieldView(inputText: $password, placeholder: "Password")
                             }
@@ -78,7 +80,7 @@ struct LoginView: View {
                 
                 VStack {
                     NavigationLink {
-                        MobileNumberRegistrationView()
+                        MobileNumberView()
                     } label: {
                         Text("Create new account")
                             .frame(maxWidth: .infinity)
@@ -109,6 +111,7 @@ struct LoginView: View {
 private extension LoginView {
     func signIn() {
         Task { await authManager.signIn(email: email, password: password) }
+        Task { await personManager.fetchCurrentPerson() }
     }
     
     var isFormValid: Bool {

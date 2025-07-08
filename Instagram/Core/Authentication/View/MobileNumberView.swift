@@ -1,5 +1,5 @@
 //
-//  RegistrationView.swift
+//  MobileNumberView.swift
 //  Instagram
 //
 //  Created by Aditya Bhardwaj on 05/07/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MobileNumberRegistrationView: View {
+struct MobileNumberView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var mobileNumber: String = ""
@@ -50,7 +50,7 @@ struct MobileNumberRegistrationView: View {
                         .clipShape(Capsule())
                         
                         NavigationLink {
-                            EmailRegistrationView()
+                            EmailView()
                         } label: {
                             Text("Sign up with email address")
                                 .foregroundStyle(Color.primary)
@@ -93,5 +93,5 @@ struct MobileNumberRegistrationView: View {
 }
 
 #Preview {
-    MobileNumberRegistrationView()
+    MobileNumberView()
 }

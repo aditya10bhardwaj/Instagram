@@ -31,7 +31,7 @@ struct PostCommentView: View {
             }
             
             HStack {
-                StoryViewCell(width: 18, height: 18)
+                StoryViewCell(person: Person.MOCK_DATA.first!, width: 18, height: 18)
                 
                 Text("Like by")
                 

@@ -10,7 +10,7 @@ import SwiftUI
 struct PostHeaderView: View {
     var body: some View {
         HStack {
-            StoryViewCell(width: 30, height: 30)
+            StoryViewCell(person: Person.MOCK_DATA.first!, width: 30, height: 30)
             
             VStack(alignment: .leading) {
                 Text("Aditya Bhardwaj")

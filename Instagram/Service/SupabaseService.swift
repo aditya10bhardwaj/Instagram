@@ -18,23 +18,23 @@ struct SupabaseService {
     func signUp(email: String, password: String) async throws -> User {
         let response = try await client.auth.signUp(email: email, password: password)
         
-        guard let _ = response.user.email else {
-            print("NO email")
+        guard let email = response.user.email else {
             throw NSError()
         }
-        print(response.user)
-        return User(id: response.user.aud, email: response.user.email!)
+        
+        try await createPersonData(person: Person(id: response.user.id, fullName: "test", email: email, username: "test", profileImage: "test", age: -1, bio: "test", followers: -1, followings: -1, posts: "test", reels: "test"))
+        
+        return User(id: response.user.id, email: response.user.email!)
     }
     
     func signIn(email: String, password: String) async throws -> User {
         let response = try await client.auth.signIn(email: email, password: password)
         
         guard let _ = response.user.email else {
-            print("NO email")
             throw NSError()
         }
-        print(response.user)
-        return User(id: response.user.aud, email: response.user.email!)
+        
+        return User(id: response.user.id, email: response.user.email!)
     }
     
     func signOut() async throws {
@@ -45,10 +45,9 @@ struct SupabaseService {
         let supabaseUser = try await client.auth.session.user
         
         guard let _ = supabaseUser.email else {
-            print("NO email")
             throw NSError()
         }
         
-        return User(id: supabaseUser.aud, email: supabaseUser.email!)
+        return User(id: supabaseUser.id, email: supabaseUser.email!)
     }
 }

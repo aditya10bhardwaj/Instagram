@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct UserDetailsView: View {
+    
+    @State var person: Person
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(spacing: 16) {
                 ZStack(alignment: .bottomTrailing) {
-                    StoryViewCell(width: 100, height: 100)
+                    StoryViewCell(person: person, width: 100, height: 100)
                     
                     Circle()
                         .fill(Color.white)
@@ -25,13 +28,13 @@ struct UserDetailsView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Aditya Bhardwaj")
+                    Text(person.username)
                         .font(.headline)
                         .fontWeight(.semibold)
                     
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("0")
+                            Text("\(person.postsCount)")
                                 .fontWeight(.bold)
                             Text("posts")
                                 .fontWeight(.semibold)
@@ -40,7 +43,7 @@ struct UserDetailsView: View {
                         Spacer()
                         
                         VStack(alignment: .leading) {
-                            Text("344")
+                            Text("\(person.followers)")
                                 .fontWeight(.bold)
                             Text("followers")
                                 .fontWeight(.semibold)
@@ -49,7 +52,7 @@ struct UserDetailsView: View {
                         Spacer()
                         
                         VStack(alignment: .leading) {
-                            Text("377")
+                            Text("\(person.followings)")
                                 .fontWeight(.bold)
                             Text("following")
                                 .fontWeight(.semibold)
@@ -62,8 +65,8 @@ struct UserDetailsView: View {
             }
             
             VStack(alignment: .leading, spacing: 12) {
-                Text("Garv se kaho hum hindu hai")
-                Text("@ aditya_bhardwaj._58")
+                Text(person.bio)
+                Text("@ \(person.username)")
                     .fontWeight(.semibold)
             }
             
@@ -114,5 +117,5 @@ struct UserDetailsView: View {
 }
 
 #Preview {
-    UserDetailsView()
+    UserDetailsView(person: Person.MOCK_DATA.first!)
 }

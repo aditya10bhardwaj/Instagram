@@ -24,6 +24,7 @@ struct TextFieldView: View {
             )
             .autocorrectionDisabled()
             .padding(.horizontal)
+            .textInputAutocapitalization(TextInputAutocapitalization(.none))
     }
 }
 

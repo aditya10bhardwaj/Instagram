@@ -1,5 +1,5 @@
 //
-//  EmailRegistratiovView.swift
+//  EmailView.swift
 //  Instagram
 //
 //  Created by Aditya Bhardwaj on 05/07/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailRegistrationView: View {
+struct EmailView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State private var email: String = ""
@@ -29,11 +29,10 @@ struct EmailRegistrationView: View {
                     .padding(.trailing)
                     
                     TextFieldView(inputText: $email, placeholder: "Email address")
-                        .padding(.vertical)
                     
                     VStack(spacing: 12) {
                         NavigationLink {
-                            EmailRegistrationPasswordView(email: $email)
+                            PasswordView(email: $email)
                         } label: {
                             Text("Next")
                                 .font(.body)
@@ -87,5 +86,5 @@ struct EmailRegistrationView: View {
 }
 
 #Preview {
-    EmailRegistrationView()
+    EmailView()
 }

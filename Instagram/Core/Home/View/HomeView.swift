@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @StateObject private var viewModel = HomeViewModel()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
-                StoryView()
+                StoryView(currentPerson: Person.MOCK_DATA.first!, persons: viewModel.persons)
                 
                 Divider()
                     .frame(height: 5)

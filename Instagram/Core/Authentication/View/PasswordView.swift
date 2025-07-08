@@ -1,5 +1,5 @@
 //
-//  EmailRegistrationPasswordView.swift
+//  Password.swift
 //  Instagram
 //
 //  Created by Aditya Bhardwaj on 07/07/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailRegistrationPasswordView: View {
+struct PasswordView: View {
     
     @Binding var email: String
     @Environment(AuthManager.self) var authManager
@@ -24,7 +24,7 @@ struct EmailRegistrationPasswordView: View {
                         Text("Create a password")
                             .font(.title)
                             .fontWeight(.regular)
-                            
+                        
                         Text("Create a password with at least six letters or numbers. It should be something that others can't guess.")
                             .font(.headline)
                             .fontWeight(.regular)
@@ -44,6 +44,7 @@ struct EmailRegistrationPasswordView: View {
                                             .stroke(Color.gray, lineWidth: 1)
                                     )
                                     .padding(.horizontal)
+                                    .textInputAutocapitalization(TextInputAutocapitalization(.none))
                             } else {
                                 TextFieldView(inputText: $password, placeholder: "Password")
                             }
@@ -76,7 +77,7 @@ struct EmailRegistrationPasswordView: View {
                     
                     VStack(spacing: 12) {
                         Button("Next") {
-                           signUp()
+                            signUp()
                         }
                         .font(.body)
                         .fontWeight(.bold)
@@ -114,13 +115,15 @@ struct EmailRegistrationPasswordView: View {
     }
 }
 
-private extension EmailRegistrationPasswordView {
+private extension PasswordView {
     func signUp() {
-        Task { await authManager.signUp(email: email, password: password) }
+        Task {
+            await authManager.signUp(email: email, password: password)
+        }
     }
 }
 
 #Preview {
-    EmailRegistrationPasswordView(email: .constant(""))
+    PasswordView(email: .constant(""))
         .environment(AuthManager())
 }
