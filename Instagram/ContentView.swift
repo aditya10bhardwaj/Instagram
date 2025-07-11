@@ -9,33 +9,47 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @AppStorage("didShowOnboarding") var didShowOnboarding: Bool = false
     @Environment(AuthManager.self) private var authManager
     @Environment(PersonManager.self) private var personManager
+    @Environment(OnboardingManager.self) private var onboardingManager
+    @State private var isLoading: Bool = true
     
     var body: some View {
         Group {
-            if authManager.currentUser == nil  {
-                LoginView()
-            } else if authManager.currentUser != nil && !didShowOnboarding {
-                AgeView(onFinish: {
-                    didShowOnboarding = true
-                })
+            if isLoading {
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding()
+                }
             } else {
-                MainTabBar()
+                if authManager.currentUser == nil  {
+                    LoginView()
+                } else if authManager.currentUser != nil && onboardingManager.didOnboard == false {
+                    AgeView {
+                        onboardingManager.didOnboard = true
+                    }
+                } else {
+                    MainTabBar()
+                }
             }
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isLoading = false
+            }
+        }
+        .animation(.easeInOut, value: isLoading)
         .task {
             await authManager.refreshUser()
-            if let user = authManager.currentUser {
-                await personManager.refreshPerson(with: user.email)
-            }
+            await onboardingManager.checkStatus()
         }
     }
 }
 
 #Preview {
-    ContentView(didShowOnboarding: false)
+    ContentView()
         .environment(AuthManager())
         .environment(PersonManager())
+        .environment(OnboardingManager())
 }

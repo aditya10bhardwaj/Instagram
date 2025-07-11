@@ -11,6 +11,7 @@ struct LoginView: View {
     
     @Environment(AuthManager.self) var authManager
     @Environment(PersonManager.self) var personManager
+    @Environment(OnboardingManager.self) var onboardingManager
     @Environment(\.colorScheme) var colorScheme
     @State private var email: String = ""
     @State private var password: String = ""
@@ -112,6 +113,7 @@ private extension LoginView {
     func signIn() {
         Task { await authManager.signIn(email: email, password: password) }
         Task { await personManager.fetchCurrentPerson() }
+        onboardingManager.didOnboard = true
     }
     
     var isFormValid: Bool {

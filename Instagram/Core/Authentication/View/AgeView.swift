@@ -12,6 +12,7 @@ struct AgeView: View {
     @State var email: String = ""
     @Environment(\.dismiss) private var dismiss
     @Environment(AuthManager.self) var authManager
+    @Environment(OnboardingManager.self) var onboardingManager
     @State private var isDatePickerPresented: Bool = false
     @State private var dob: Date = Date()
     @State private var age: Int = 18
@@ -95,6 +96,9 @@ struct AgeView: View {
                 }
             }
             .navigationBarBackButtonHidden()
+        }
+        .onAppear {
+            Task { await onboardingManager.updateOnboardingStatus() }
         }
     }
 }

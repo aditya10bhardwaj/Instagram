@@ -23,6 +23,7 @@ struct SupabaseService {
         }
         
         try await createPersonData(person: Person(id: response.user.id, fullName: "test", email: email, username: "test", profileImage: "test", age: -1, bio: "test", followers: -1, followings: -1, posts: "test", reels: "test"))
+        try await onboardUser(with: email)
         
         return User(id: response.user.id, email: response.user.email!)
     }

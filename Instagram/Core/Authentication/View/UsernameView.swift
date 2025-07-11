@@ -60,6 +60,8 @@ struct UsernameView: View {
                     }
                 }
                 .padding(.horizontal)
+                
+                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

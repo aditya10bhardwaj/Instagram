@@ -11,6 +11,7 @@ struct AccountView: View {
     
     @Environment(AuthManager.self) var authManager
     @Environment(PersonManager.self) var personManager
+    @Environment(OnboardingManager.self) var onboardingManager
     
     var body: some View {
         NavigationStack {
@@ -71,6 +72,7 @@ private extension AccountView {
     func signOut() {
         Task { await authManager.signOut() }
         personManager.currentPerson = nil
+        onboardingManager.didOnboard = false
     }
 }
 
